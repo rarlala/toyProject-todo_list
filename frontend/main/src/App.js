@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Memo } from "./component/memo";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {descriptions.map(
+        (description,index) => <Memo id={index} description={description}/>
+      )}
     </div>
   );
 }
+
+const descriptions = [
+  "빨래하기",
+  "청소하기",
+  "설거지하기",
+  "코테 준비하기",
+  "돈모으기"
+]
 
 export default App;
