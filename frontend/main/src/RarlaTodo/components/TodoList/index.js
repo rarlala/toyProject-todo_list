@@ -1,4 +1,5 @@
 import React from "react";
+import TodoItem from "../TodoItem";
 import "./index.scss";
 
 export default function TodoList(props) {
@@ -25,14 +26,13 @@ export default function TodoList(props) {
     <ul>
       {todoList.reverse().map(( todo, i ) => {
         return (
-          <li key={i}>
-            <span className={todo.complete && "completeTitle"}>{todo.index}. {todo.todoTitle}</span>
-            <div>
-              <button onClick={() => onClickComplete(todo.index)}>{todo.complete ? "완료" : "미완료"}</button>
-              <button onClick={()=> onClickEdit(todo.index, todo.todoTitle)}>수정</button>
-              <button onClick={() => onClickRemove(todo.index)}>삭제</button>
-            </div>
-          </li>
+          <TodoItem
+            key={i}
+            todo={todo}
+            onClickComplete={onClickComplete}
+            onClickRemove={onClickRemove}
+            onClickEdit={onClickEdit}
+          />
         )
       }) }
     </ul>
