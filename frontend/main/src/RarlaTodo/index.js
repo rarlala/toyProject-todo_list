@@ -1,9 +1,9 @@
 import React, {useState} from "react";
+import TodoInput from "./components/TodoInput";
 import "./index.scss";
 
 export default function RarlaTodo(){
   
-  const [inputData, setInputData] = useState("");
   const [todoList, setTodoList] = useState([
     {index: 1, todoTitle: "list UI 만들기", complete: false},
     {index: 2, todoTitle: "list 추가 기능 만들기", complete: false},
@@ -11,9 +11,7 @@ export default function RarlaTodo(){
     {index: 4, todoTitle: "list 완료 기능 만들기", complete: false}
   ]);
   
-  const onChangeInput = (data) => {
-    setInputData(data);
-  }
+
   
   const onClickComplete = (index) => {
     const newTodoList = todoList.map((todo) => todo.index === index ? {...todo, complete: !todo.complete} : todo);
@@ -36,20 +34,7 @@ export default function RarlaTodo(){
     <div className="rarla-todo">
       <h1>Rarla Todo</h1>
       
-      <input
-        type="text" 
-        className="todo-input" 
-        value={inputData}
-        placeholder="할 일 입력 후 Enter"
-        onChange={(e) => onChangeInput(e.target.value)}
-        onKeyUp={(e) => {
-          e.key === "Enter" && 
-            setTodoList(
-              [{ index: todoList.length + 1, todoTitle: inputData, complete: false}, ...todoList],
-              setInputData('')
-            )
-        }}
-      />
+     <TodoInput todoList={todoList} setTodoList={setTodoList} />
       
       <div className="todo-box">
         <ul>
