@@ -21,10 +21,10 @@ export default function TodoList(props) {
       setTodoList(newTodoList);
     }
   }
-  
+
   return(
     <ul>
-      {todoList.reverse().map(( todo, i ) => {
+      {todoList.map(( todo, i ) => {
         return (
           <TodoItem
             key={i}
