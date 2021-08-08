@@ -3,24 +3,4 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
-  ul, li {
-    margin: 0;
-    padding: 0;
-  }
-  
-  button {
-    background-color: white;
-    border: none;
-  }
-  
-  li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-  }
-  
-  .completeTitle {
-    text-decoration: line-through;
-  }
 }
