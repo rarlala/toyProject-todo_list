@@ -11,6 +11,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.List = require("./model.list")(sequelize,Sequelize);
+db.List = require("./models/list")(sequelize,Sequelize);
 
 module.exports = db;
