@@ -18,7 +18,18 @@ app.get("/lists", async (req,res) => {
     } catch (error) {
         res.send(error);
     }
-})
+});
+
+app.get("/list", async(req,res) => {
+  try {
+    const list = await db.List.findOne({
+      where: { id: 2 }
+    });
+    res.send(list);
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
