@@ -1,8 +1,16 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('Todo', 'root', 'alswo0613!', {
-  host: 'localhost',
-  dialect: 'mysql'
+const sequelize = new Sequelize('todo', 'bbangya', 'alswo0613!', {
+  host: 'todo.c6zkki5oydny.ap-northeast-2.rds.amazonaws.com',
+  dialect: 'mysql',
+  port: 3306
 });
 
-module.exports = { sequelize };
+const db = {};
+
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+db.List = require("./model.list")(sequelize,Sequelize);
+
+module.exports = db;
