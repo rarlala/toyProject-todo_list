@@ -4,8 +4,6 @@ const db = require("./db");
 db.sequelize.sync();
 const port = 3000;
 
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
