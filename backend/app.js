@@ -15,9 +15,8 @@ app.get('/', (req, res) => {
 
 app.get("/lists", async (req,res) => {
     try {
-        const lists = require("./models/list/controller");
-        const result = await lists.findAll();
-        res.send(result);
+        const lists = await db.List.findAll();
+        res.send(lists);
     } catch (error) {
         res.send(error);
     }
