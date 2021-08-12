@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const db = require("./db");
 db.sequelize.sync();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -13,10 +15,10 @@ app.get('/', (req, res) => {
 
 app.get("/lists", async (req,res) => {
     try {
-        const lists = await db.List.findAll();
-        res.send(lists);
+      const lists = await db.List.findAll();
+      res.send(lists);
     } catch (error) {
-        res.send(error);
+      res.send(error);
     }
 });
 
