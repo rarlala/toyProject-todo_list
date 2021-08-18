@@ -16,10 +16,11 @@ export default function TodoList(props) {
     setTodoList(todoList.filter((list) => list.id !== id));
   }
   
-  const onClickEdit = (index, title) => {
-    const editData = window.prompt("수정하세요", title);
-    if (editData && editData !== title) {
-      const newTodoList = todoList.map((todo) => todo.index === index ? {...todo, todoTitle: editData} : todo);
+  const onClickEdit = async (id, description) => {
+    const editData = window.prompt("수정하세요", description);
+    if (editData && editData !== description) {
+      await axios.put(`http://localhost:3000/list/${id}`, { description : editData });
+      const newTodoList = todoList.map((todo) => todo.id === id ? {...todo, description: editData} : todo);
       setTodoList(newTodoList);
     }
   }
