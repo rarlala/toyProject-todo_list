@@ -1,12 +1,21 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./index.scss";
 
 export default function TodoInput(props){
   const { todoList, setTodoList } = props;
-  const [ data, setData ] = useState();
+  const [ data, setData ] = useState('');
   
-  const onChangeInput = (data) => {
-    setData(data);
+  const onChangeInput = (e) => {
+    setData(e.target.value);
+  }
+  
+  const onSubmit = async (e) => {
+    if (e.key === 'Enter'){
+      const res = await axios.post('http://localhost:3000/list', { description: data });
+      setTodoList([...todoList, res.data]);
+      setData('');
+    }
   }
   
   return (
@@ -15,14 +24,8 @@ export default function TodoInput(props){
       className="todo-input" 
       value={data}
       placeholder="할 일 입력 후 Enter"
-      onChange={(e) => onChangeInput(e.target.value)}
-      onKeyUp={(e) => {
-        e.key === "Enter" && 
-          setTodoList(
-            [...todoList, { index: todoList.length + 1, todoTitle: data, complete: false}],
-            setData('')
-          )
-      }}
+      onChange={onChangeInput}
+      onKeyUp={onSubmit}
     />
   )
 }
