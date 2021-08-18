@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const db = require("./db");
+const cors = require("cors");
 db.sequelize.sync();
 const port = 3000;
 
@@ -22,12 +23,44 @@ app.get("/lists", async (req,res) => {
     }
 });
 
-app.get("/list", async(req,res) => {
+app.get("/list/:id", async(req,res) => {
   try {
     const list = await db.List.findOne({
-      where: { id: 2 }
+      where: { id: req.params.id }
     });
     res.send(list);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.post("/list", async(req,res) => {
+  try {
+    const list = await db.List.create(req.body);
+    res.send(list);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.put("/list/:id", async(req,res) => {
+  try {
+    const result = await db.List.update(req.body, {
+      where: { id: req.params.id }
+    });
+    res.send(!!result[0]);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.delete("/list/:id", async(req,res) => {
+  try {
+    const isDeleted = await db.List.destroy({
+      where: { id: req.params.id }
+    });
+
+    res.sendStatus(200);
   } catch (error) {
     res.send(error);
   }
