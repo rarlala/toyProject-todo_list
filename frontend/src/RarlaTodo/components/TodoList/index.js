@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import TodoItem from "../TodoItem";
 import "./index.scss";
 
@@ -10,8 +11,9 @@ export default function TodoList(props) {
     setTodoList(newTodoList);
   }
   
-  const onClickRemove = (index) => {
-    setTodoList(todoList.filter((list) => list.index !== index));
+  const onClickRemove = async (id) => {
+    await axios.delete(`http://localhost:3000/list/${id}`);
+    setTodoList(todoList.filter((list) => list.id !== id));
   }
   
   const onClickEdit = (index, title) => {

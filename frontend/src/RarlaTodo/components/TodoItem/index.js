@@ -10,7 +10,7 @@ export default function TodoItem(props) {
       <div>
         <button onClick={() => onClickComplete(todo.index)}>{todo.complete ? "완료" : "미완료"}</button>
         <button onClick={()=> onClickEdit(todo.index, todo.todoTitle)}>수정</button>
-        <button onClick={() => onClickRemove(todo.index)}>삭제</button>
+        <button onClick={() => onClickRemove(todo.id)}>삭제</button>
       </div>
     </li>
   )
